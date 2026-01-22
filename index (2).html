@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ESSENTIALS — STORE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-soft: cubic-bezier(.2, .9, .2, 1);
+}
+
+body{
+  font-family: Inter, sans-serif;
+  background:#fff;
+  color:#000;
+  padding: 64px 40px 120px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out);
+}
+body.loaded{opacity:1;transform:translateY(0)}
+
+/* стики шапка */
+.header{
+  position: sticky;
+  top: 18px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding: 14px 0 18px;
+
+  background: rgba(255,255,255,.72);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+/* лого */
+.logo{
+  text-align:center;
+  font-family:'Space Grotesk',sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+
+  opacity: 0;
+  transform: translateY(10px);
+}
+body.loaded .logo{animation: logoIn 900ms var(--ease-out) 120ms forwards}
+@keyframes logoIn{to{opacity:1;transform:translateY(0)}}
+
+.logo > span{
+  position: relative;
+  display: inline-block;
+  letter-spacing: .45em;
+  margin-right: -.45em;
+}
+
+/* ЭТО АУРА */
+.logo > span::after{
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: blur(7px);
+  opacity: 0;
+  transform: translateY(.2px);
+}
+.header.is-stuck .logo > span::after{opacity:.28}
+
+/* сетка */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  margin-top: 80px;
+}
+
+.card{
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+}
+body.loaded .card{animation: cardIn 900ms var(--ease-out) forwards}
+@keyframes cardIn{
+  60%{filter:blur(0)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+
+.image{
+  width:100%;
+  aspect-ratio:3/4;
+  background:#000;
+  cursor:pointer;
+  transform: translateZ(0);
+  transition: transform 500ms var(--ease-soft), filter 500ms var(--ease-soft);
+}
+.card:hover .image{transform:scale(1.02);filter:contrast(1.05)}
+
+.meta{
+  margin-top:12px;
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  opacity:.85;
+}
+
+a{text-decoration:none;color:inherit}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  body{padding:56px 18px 96px}
+  .grid{grid-template-columns:1fr; gap:28px; margin-top:64px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  body{transition:none; transform:none; opacity:1}
+  .logo, .card{animation:none !important; opacity:1; transform:none; filter:none}
+  .logo > span::after{opacity:0 !important}
+  .image{transition:none}
+}
+</style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo"><span data-text="ESSENTIALS">ESSENTIALS</span></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <a href="jacket.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>JACKET 01</span><span>4200р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="coat.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>COAT 02</span><span>6900р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="hoodie.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>HOODIE 03</span><span>2800р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="trousers.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>TROUSERS 04</span><span>3100р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="shirt.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>SHIRT 05</span><span>1900р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="knit.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>KNIT 06</span><span>3500р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="bag.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>BAG 07</span><span>5400р</span></div>
+    </div>
+
+    <div class="card">
+      <a href="boots.html" onclick="transition(event)"><div class="image"></div></a>
+      <div class="meta"><span>BOOTS 08</span><span>7800р</span></div>
+    </div>
+  </div>
+
+<script>
+function transition(e){
+  e.preventDefault();
+  const link = e.currentTarget.href;
+  document.body.classList.remove('loaded');
+  document.body.style.opacity = 0;
+  setTimeout(() => { window.location = link; }, 420);
+}
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.card').forEach((card, i) => {
+    card.style.animationDelay = (180 + i * 70) + 'ms';
+  });
+  document.body.classList.add('loaded');
+});
+
+window.addEventListener('scroll', () => {
+  document.querySelector('.header')
+    .classList.toggle('is-stuck', window.scrollY > 10);
+}, { passive: true });
+</script>
+
+</body>
+</html>
