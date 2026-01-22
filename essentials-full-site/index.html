@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ESSENTIALS — STORE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:#fff;color:#000;padding:120px 40px;opacity:0;transition:opacity .6s ease}
+body.loaded{opacity:1}
+.logo{text-align:center;font-family:'Space Grotesk',sans-serif;font-size:22px;letter-spacing:.45em;margin-bottom:120px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.image{width:100%;aspect-ratio:3/4;background:#000;cursor:pointer}
+.meta{margin-top:12px;font-size:12px;display:flex;justify-content:space-between}
+a{text-decoration:none;color:inherit}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="logo">ESSENTIALS</div>
+<div class="grid">
+
+<div class="card">
+<a href="jacket.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>JACKET 01</span><span>€420</span></div>
+</div>
+
+<div class="card">
+<a href="coat.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>COAT 02</span><span>€690</span></div>
+</div>
+
+<div class="card">
+<a href="hoodie.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>HOODIE 03</span><span>€280</span></div>
+</div>
+
+<div class="card">
+<a href="trousers.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>TROUSERS 04</span><span>€310</span></div>
+</div>
+
+<div class="card">
+<a href="shirt.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>SHIRT 05</span><span>€190</span></div>
+</div>
+
+<div class="card">
+<a href="knit.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>KNIT 06</span><span>€350</span></div>
+</div>
+
+<div class="card">
+<a href="bag.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>BAG 07</span><span>€540</span></div>
+</div>
+
+<div class="card">
+<a href="boots.html" onclick="transition(event)"><div class="image"></div></a>
+<div class="meta"><span>BOOTS 08</span><span>€780</span></div>
+</div>
+
+</div>
+<script>
+function transition(e){
+  e.preventDefault();
+  const link = e.currentTarget.href;
+  document.body.style.opacity = 0;
+  setTimeout(()=>{window.location = link}, 400);
+}
+window.onload = ()=>document.body.classList.add('loaded');
+</script>
+</body>
+</html>
